@@ -34,7 +34,7 @@ fn run_file(filename: impl AsRef<Path>) {
 }
 
 fn run(source: &String) {
-    todo!();
+    println!("{:?}", source);
 }
 
 fn run_prompt() {
