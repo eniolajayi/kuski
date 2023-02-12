@@ -1,6 +1,6 @@
 use std::env;
 use std::fs::File;
-use std::io::{self};
+use std::io::{self, Write};
 use std::path::Path;
 
 fn main() {
@@ -41,6 +41,9 @@ fn run_prompt() {
     println!("kuski repl >> q/quit to exit");
     loop {
         print!("> ");
+        // force the output to be sent to the console immediately
+        io::stdout().flush().unwrap();
+
         let mut input = String::new();
         io::stdin().read_line(&mut input).unwrap();
         if input.trim() == "quit" || input.trim() == "q" {
