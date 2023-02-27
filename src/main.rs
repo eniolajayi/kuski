@@ -33,6 +33,8 @@ fn run_file(filename: impl AsRef<Path>) {
     }
 }
 
+// TODO Don't run on error
+
 fn run(source: &String) {
     println!("{:?}", source);
 }
