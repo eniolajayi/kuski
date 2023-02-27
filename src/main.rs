@@ -53,3 +53,14 @@ fn run_prompt() {
     }
     println!(">> ");
 }
+
+
+fn error(line: &u32, message: &String){
+    report(line, &"".to_string(), message);
+}
+
+fn report(line: &u32, position: &String, message: &String){
+    let content = format!("[Line {line}] Error {position}: {message}");
+    let output = content.as_bytes();
+    io::stderr().write_all(output).unwrap_or(());
+}
