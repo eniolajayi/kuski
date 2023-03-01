@@ -1,11 +1,14 @@
-
 struct Scanner {
     source: &String,
     tokens: Vec<Token>,
 }
 
 impl Scanner {
-    fn new(source: &String){
-        
+    fn new(&mut self, source: &String, tokens: Vec<Token>) -> Scanner {
+        Scanner { source, tokens }
+    }
+
+    fn set_src(&mut self, source: &String) {
+        self.source = *source;
     }
 }
