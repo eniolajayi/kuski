@@ -11,4 +11,8 @@ impl Scanner {
     fn set_src(&mut self, source: &String) {
         self.source = *source;
     }
+
+    fn scan_tokens(&mut self)-> Vec<Token>{
+        
+    }
 }
