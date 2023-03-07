@@ -1,23 +1,8 @@
-use std::env;
 use std::fs::File;
 use std::io::{self, Write};
 use std::path::Path;
 
-fn main() {
-    let args: Vec<String> = env::args().collect();
-
-    if args.len() > 2 {
-        panic!("Usage: kuskit [script]");
-    } else if args.len() == 2 {
-        run_file(&args[1]);
-    } else {
-        run_prompt();
-    }
-
-    println!("{:?}", &args);
-}
-
-fn run_file(filename: impl AsRef<Path>) {
+pub fn run_file(filename: impl AsRef<Path>) {
     let file = match File::open(filename) {
         Ok(file) => file,
         Err(error) => {
@@ -35,11 +20,11 @@ fn run_file(filename: impl AsRef<Path>) {
 
 // TODO Don't run on error
 
-fn run(source: &String) {
+pub fn run(source: &String) {
     println!("{:?}", source);
 }
 
-fn run_prompt() {
+pub fn run_prompt() {
     println!("kuski repl >> q/quit to exit");
     loop {
         print!("> ");
@@ -57,11 +42,11 @@ fn run_prompt() {
 }
 
 
-fn error(line: &u32, message: &String){
+pub fn error(line: &u32, message: &String){
     report(line, &"".to_string(), message);
 }
 
-fn report(line: &u32, position: &String, message: &String){
+pub fn report(line: &u32, position: &String, message: &String){
     let content = format!("[Line {line}] Error {position}: {message}");
     let output = content.as_bytes();
     io::stderr().write_all(output).unwrap_or(());
