@@ -2,6 +2,9 @@ use std::fs::File;
 use std::io::{self, Write};
 use std::path::Path;
 
+mod scanner;
+mod tokens;
+
 pub fn run_file(filename: impl AsRef<Path>) {
     let file = match File::open(filename) {
         Ok(file) => file,
